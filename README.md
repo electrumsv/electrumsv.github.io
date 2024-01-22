@@ -2,9 +2,8 @@
 
 Web site for the ElectrumSV wallet
 
-This web site will be updated soon. For now you can go to the releases and find any current
-downloads.
+This web site will be updated soon. For now you can find our recommended release below.
 
-Links:
+Recommended release:
 
-* [ElectrumSV releases](https://github.com/electrumsv/electrumsv/releases).
+* [ElectrumSV 1.3.16](https://github.com/electrumsv/electrumsv/releases/tag/sv-1.3.16).
