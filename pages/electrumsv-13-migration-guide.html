@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+      <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content="The ElectrumSV Wallet for Bitcoin SV"/>
+    <meta name="author" content="The ElectrumSV Developers"/>
+    <meta property="og:site_name" content="ElectrumSV"/>
+    <meta property="og:title" content="ElectrumSV Website"/>
+    <meta property="og:description" content="This page is currently lacking a description. Contact the developers and let them know."/>
+    <meta property="og:image" content="https://electrumsv.io/theme/img/ESV_atomicon_RGB_small.png"/>
+	<meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@ElectrumSV"/>
+    <meta name="twitter:title" content="ElectrumSV Website"/>
+    <meta name="twitter:description" content="This page is currently lacking a description. Contact the developers and let them know."/>
+    <meta name="twitter:image" content="https://electrumsv.io/theme/img/ESV_atomicon_RGB_small.png"/>
+    <title>ElectrumSV Website - ElectrumSV 1.3 migration guide</title>
+    <link rel="stylesheet" href="../theme/css/fontawesome-v5.6.3.min.css">
+    <link rel="stylesheet" href="../theme/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../theme/css/local.css?8">
+    <link rel="icon" href="../theme/img/favicon.ico">
+
+
+	<!-- Clarity tracking code for http://electrumsv.io/ -->
+	<script>
+		(function(c,l,a,r,i,t,y){
+			c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+			t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+			y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+		})(window, document, "clarity", "script", "6ivfzjahk2");
+	</script>
+  </head>
+  <body class="d-flex flex-column h-100">
+	<main role="main" class="flex-shrink-0 mb-3">
+		<div class="bg-dark">
+			<div class="container">
+				<nav class="navbar navbar-dark navbar-expand-lg">
+					<a class="navbar-brand" href="../index.html"><img alt="The ElectrumSV logo" class="d-md-block" src="../theme/img/ESV_logo_wh_RGB_full.svg" onerror="this.onerror=null; this.src='../theme/img/title_lg.png'" height="40px" title="ElectrumSV"/></a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav ml-auto">
+							<li class='nav-item '>
+								<a class="nav-link esv-btn-navbar mr-2" href="../index.html">About</a>
+							</li>
+							<li class='nav-item'>
+								<a class="nav-link esv-btn-navbar mr-2" href="https://github.com/electrumsv/electrumsv/releases">Releases</a>
+							</li>
+							<li class='nav-item'>
+								<a class="nav-link esv-btn-navbar mr-2" href="https://electrumsv.readthedocs.io/" target="_blank">Documentation</a>
+							</li>
+							<li class='nav-item'>
+								<a class="nav-link esv-btn-navbar mr-2" href="https://github.com/electrumsv/electrumsv/issues/new/choose" target="_blank">Support</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="https://github.com/electrumsv"><i class="fab fa-github-square" title="Github"></i><span class="d-lg-none"> Github</span></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="https://twitter.com/electrumsv"><i class="fab fa-twitter-square" title="Twitter"></i><span class="d-lg-none"> Twitter</span></a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+        </div>
+
+        <div class="container content-container pt-2">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 mt-3">
+        <h1>ElectrumSV 1.3 migration guide</h1>
+        
+
+        <p>This article is intended to illustrate a few of the common uses of ElectrumSV, that have changed
+between the older versions of ElectrumSV 1.2, and the new versions of ElectrumSV 1.3.</p>
+<p>The current version of ElectrumSV at the time of writing, is 1.3.6, and you should only ever
+download it from electrumsv.io.</p>
+<div class="contents topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#migrating-an-existing-wallet-from-1-2-5-or-earlier" id="toc-entry-1">Migrating an existing wallet from 1.2.5 (or earlier)</a><ul>
+<li><a class="reference internal" href="#select-and-open-your-wallet" id="toc-entry-2">Select and open your wallet</a></li>
+<li><a class="reference internal" href="#add-a-mandatory-password-if-it-has-no-password" id="toc-entry-3">Add a mandatory password if it has no password</a></li>
+<li><a class="reference internal" href="#wait-for-the-migration-to-complete" id="toc-entry-4">Wait for the migration to complete</a></li>
+<li><a class="reference internal" href="#migration-is-successfully-completed" id="toc-entry-5">Migration is successfully completed</a></li>
+<li><a class="reference internal" href="#viewing-the-successfully-migrated-wallet" id="toc-entry-6">Viewing the successfully migrated wallet</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#creating-a-new-wallet" id="toc-entry-7">Creating a new wallet</a><ul>
+<li><a class="reference internal" href="#choosing-the-location-and-file-name" id="toc-entry-8">Choosing the location and file name</a></li>
+<li><a class="reference internal" href="#add-a-mandatory-password" id="toc-entry-9">Add a mandatory password</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#creating-a-new-standard-account" id="toc-entry-10">Creating a new “Standard” account</a><ul>
+<li><a class="reference internal" href="#adding-an-account" id="toc-entry-11">Adding an account</a></li>
+<li><a class="reference internal" href="#creating-the-new-standard-account" id="toc-entry-12">Creating the new “Standard” account</a></li>
+<li><a class="reference internal" href="#backing-up-your-seed-words" id="toc-entry-13">Backing up your seed words</a></li>
+<li><a class="reference internal" href="#the-initial-backup-notification" id="toc-entry-14">The initial backup notification</a></li>
+<li><a class="reference internal" href="#follow-the-link-to-your-secured-data" id="toc-entry-15">Follow the link to your secured data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#accessing-your-master-public-key" id="toc-entry-16">Accessing your master public key</a><ul>
+<li><a class="reference internal" href="#viewing-the-master-public-key-for-a-given-account" id="toc-entry-17">Viewing the master public key for a given account</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#accessing-your-master-private-key-secured-data" id="toc-entry-18">Accessing your master private key/secured data</a><ul>
+<li><a class="reference internal" href="#viewing-the-secured-data-for-a-given-account" id="toc-entry-19">Viewing the secured data for a given account</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="migrating-an-existing-wallet-from-1-2-5-or-earlier">
+<h2>Migrating an existing wallet from 1.2.5 (or earlier)</h2>
+<p>All past Electrum Core and Electron Cash wallets that predate the Bitcoin SV split should open,
+not just wallets created or last used in ElectrumSV versions up to 1.2.5.</p>
+<p>There are two known cases where wallet migration can fail:</p>
+<ul class="simple">
+<li>Incomplete wallets. If someone opens a wallet that was closed mid-synchronisation, we have no
+way to fill in the gaps and have to declare a migration failure. Your only recourse is to first
+go back to 1.2.5 and open the wallet and let it completely synchronise, and retry. If that does
+not solve the problem, report the issue to us and we’ll work through it.</li>
+<li>Coinbase transactions. The migration process lacked test cases for wallets that contained these,
+and would error. This has been fixed in Github where the source code is maintained, and will be
+fixed in 1.3.2 and beyond.</li>
+</ul>
+<div class="section" id="select-and-open-your-wallet">
+<h3>Select and open your wallet</h3>
+<p>Start up ElectrumSV and make sure you are on the wallet selection page.</p>
+<div class="figure align-center">
+<img alt="A screenshot of the wallet selection screen of the wallet wizard." src="../pages/1.3-migration-guide/wallet-wizard-selection.png" />
+<p class="caption">The wallet selection page.</p>
+</div>
+<p>If your wallet is in the list of “Recently Opened Wallets”, double click on it to open it. If
+you used the keyboard to select the entry, press the enter key to open it. Otherwise, if you
+are the thorough type, once it is selected through any mean click on the “Open Selected Wallet”
+button to open it.</p>
+<p>If your wallet is not present in the list of “Recently Opened Wallets”, click on the “Open Other
+Wallet” button to locate and open it.</p>
+</div>
+<div class="section" id="add-a-mandatory-password-if-it-has-no-password">
+<h3>Add a mandatory password if it has no password</h3>
+<p>Once you have opened your existing wallet from ElectrumSV 1.2 or earlier, if your wallet was
+previously lacking a password, now we force you to add one. This also applies to hardware and
+watch-only wallets, where there is no key or seed word data to encrypt.</p>
+<div class="figure align-center">
+<img alt="A screenshot of the password dialog for a to-be migrated wallet without one." src="../pages/1.3-migration-guide/add-password-wallet-migration.png" />
+<p class="caption">Add a password to your wallet.</p>
+</div>
+<p>If your wallet already has a password, you will be asked to provide it so that it can be opened
+by ElectrumSV to migrate it. This existing password will be reused for securing and passwording
+the migrated version.</p>
+</div>
+<div class="section" id="wait-for-the-migration-to-complete">
+<h3>Wait for the migration to complete</h3>
+<p>This step should only take a few seconds. It is very unlikely anyone has a wallet that takes
+longer.</p>
+<div class="figure align-center">
+<img alt="A screenshot of the in-progress wallet migration page of the wallet wizard." src="../pages/1.3-migration-guide/wallet-wizard-migrating.png" />
+<p class="caption">The migration process in action.</p>
+</div>
+</div>
+<div class="section" id="migration-is-successfully-completed">
+<h3>Migration is successfully completed</h3>
+<p>Once the migration has completed successfully, the “Finish” button will become enabled, and the
+user can click it to open the wallet. It may take a few seconds where the wallet opening UI
+closes and you can see nothing while your migrated wallet is loaded. Please wait patiently —
+we should definitely add an interim user interface here and please remind us if we do not.</p>
+<div class="figure align-center">
+<img alt="A screenshot of the completed wallet migration page of the wallet wizard." src="../pages/1.3-migration-guide/wallet-wizard-migrated.png" />
+<p class="caption">The completed migration process.</p>
+</div>
+<p>If you see a red progress bar, and the migration fails, please scroll up to the start of this
+migration topic and follow the instructions there about reporting it.</p>
+</div>
+<div class="section" id="viewing-the-successfully-migrated-wallet">
+<h3>Viewing the successfully migrated wallet</h3>
+<p>After your wallet has been opened, your main wallet window will open and it will synchronise
+with the blockchain.</p>
+<div class="figure align-center">
+<img alt="A screenshot of the wallet window for a successfully migrated wallet." src="../pages/1.3-migration-guide/migrated-wallet.png" />
+<p class="caption">A successfully migrated wallet from some version of ElectrumSV 1.2.</p>
+</div>
+<p>Congratulations, you have successfully migrated your wallet. You will note that the user
+interface now has a list of accounts on the left hand side, although we currently limit
+it to one account for now. In the future a wallet will be able to contain multiple accounts.</p>
+</div>
+</div>
+<div class="section" id="creating-a-new-wallet">
+<h2>Creating a new wallet</h2>
+<p>With ElectrumSV 1.3 a wallet is now a container for your accounts, so this shows you how to
+create an empty wallet with no accounts. You will want to add an account to it, to start
+using it.</p>
+<div class="section" id="choosing-the-location-and-file-name">
+<h3>Choosing the location and file name</h3>
+<p>The first step is to choose where to store your wallet, and what it’s file name should be.
+If you choose not to store your wallet in the default location that ElectrumSV uses, it is
+likely that you will quickly be able to find it again in the “Recently Opened Wallets” list
+when you open it again in the future.</p>
+<p>Start off at the wallet selection page.</p>
+<div class="figure align-center">
+<img alt="A screenshot of the wallet selection page of the wallet wizard." src="../pages/1.3-migration-guide/wallet-wizard-selection.png" />
+<p class="caption">The wallet selection page.</p>
+</div>
+<p>Click on &quot;Create New Wallet&quot;. You will be presented with a file dialog that lets you choose
+where your wallet will be stored, and what it will be named. It defaults to the standard
+ElectrumSV wallet location on your operating system. Enter a file name, and click “Save”
+(or press the enter key).</p>
+<div class="figure align-center">
+<img alt="A screenshot of the file dialog for selecting where a newly created wallet goes." src="../pages/1.3-migration-guide/wallet-wizard-create-dialog.png" />
+<p class="caption">The wallet creation file dialog.</p>
+</div>
+</div>
+<div class="section" id="add-a-mandatory-password">
+<h3>Add a mandatory password</h3>
+<p>The next step is setting a password for your new wallet. We require a password and there is
+no way to opt out, but you can always enter something like “password” or “123456” if you wish.
+This is also required for hardware and watch-only wallets, where there is no key or seed word
+data to encrypt.</p>
+<div class="figure align-center">
+<img alt="A screenshot of the password dialog for a new wallet creation." src="../pages/1.3-migration-guide/add-password-wallet-creation.png" />
+<p class="caption">The wallet creation password dialog.</p>
+</div>
+<p>Once you have entered a password, and confirmed it, the “OK” button will become enabled and
+you can click it (or just press the enter key) to open the new wallet.</p>
+<div class="figure align-center">
+<img alt="A screenshot of a newly created wallet." src="../pages/1.3-migration-guide/new-wallet.png" />
+<p class="caption">The newly created wallet.</p>
+</div>
+<p>Congratulations, you have created a new empty wallet. It will not be usable until you have
+created an account, and various parts of the user interface will indicate this.</p>
+</div>
+</div>
+<div class="section" id="creating-a-new-standard-account">
+<h2>Creating a new “Standard” account</h2>
+<p>If you are reading this, you likely have a new wallet that has no accounts, and you want to
+add one to it.</p>
+<p>We support addition of a wide variety of account types:</p>
+<ul class="simple">
+<li>A new “Standard” account. This is the equivalent of creating a new ElectrumSV seed-word
+based wallet in 1.2.5 and earlier.</li>
+<li>A multi-signature account. Use this if you are creating a new multi-signature account,
+or restoring an existing one from master public keys, seed words and so on.</li>
+<li>Importing from text. Use this to import your seed words, whether Electrum seed words,
+BIP39 seed words from another wallet, private keys, public keys, master public keys, master
+private keys, and so on.</li>
+<li>Importing a hardware wallet. If you have an existing hardware wallet that has a seed set
+up on it, then you can use this to add an account that links to it and uses it to sign.
+If you have a hardware wallet that does not have a seed set up on it, you should also be
+able to use this to set it up unless the device is a Ledger. Do not buy a Ledger.</li>
+</ul>
+<div class="section" id="adding-an-account">
+<h3>Adding an account</h3>
+<p>In the top-left-hand corner of your wallet window, you will see the “Add Account” button.
+Click it and it will open the account wizard which allows all supported types of accounts
+to be created.</p>
+<div class="figure align-center">
+<img alt="A screenshot highlighting the “Add Account” button in the wallet window." src="../pages/1.3-migration-guide/new-wallet.png" />
+<p class="caption">Highlighting of the “Add Account” button.</p>
+</div>
+<p>The account wizard offers four different types of account addition, at the time of writing.</p>
+<div class="figure align-center">
+<img alt="A screenshot of the account type selection in the account wizard." src="../pages/1.3-migration-guide/account-wizard-type-selection.png" />
+<p class="caption">The account wizard.</p>
+</div>
+</div>
+<div class="section" id="creating-the-new-standard-account">
+<h3>Creating the new “Standard” account</h3>
+<p>Double-click on the “Standard” entry to proceed. Or if you prefer to work for it, click the
+“Next” button or press the enter key. You will be asked for your password so that the generated
+seed words and private key data can be encrypted into your wallet. This also verifies you have
+the ability to really use this wallet, and should able to add an account.</p>
+<div class="figure align-center">
+<img alt="A screenshot of the password confirmation dialog." src="../pages/1.3-migration-guide/password-confirmation-dialog.png" />
+<p class="caption">Confirm your password dialog.</p>
+</div>
+<p>You will immediately see that the account has been added to your wallet. You will note that at
+no point did you have to copy down your new seed words, or confirm them. You will be reminded
+to back them up by the wallet, and can do so at your leisure and own risk.</p>
+<div class="figure align-center">
+<img alt="A screenshot of the receiving tab in the wallet window." src="../pages/1.3-migration-guide/wallet-window-receiving-tab.png" />
+<p class="caption">The wallet with the new standard account.</p>
+</div>
+</div>
+<div class="section" id="backing-up-your-seed-words">
+<h3>Backing up your seed words</h3>
+<p>The wallet window now has a notification center, which is used to remind you to deal with
+important events, and point out how you can do it.</p>
+<div class="figure align-center">
+<img alt="A screenshot of the highlighted icon for notification center activity." src="../pages/1.3-migration-guide/wallet-window-notification-center-highlight.png" />
+<p class="caption">Highlighting the new notification center.</p>
+</div>
+</div>
+<div class="section" id="the-initial-backup-notification">
+<h3>The initial backup notification</h3>
+<p>Clicking the notification icon will make the new “Notifications” tab the active one and show
+the initial notification about backing up your data.</p>
+<div class="figure align-center">
+<img alt="A screenshot of the initial backup notification." src="../pages/1.3-migration-guide/backup-notification.png" />
+<p class="caption">The initial backup notification.</p>
+</div>
+</div>
+<div class="section" id="follow-the-link-to-your-secured-data">
+<h3>Follow the link to your secured data</h3>
+<p>If you click on the “account’s secured data” link, it will take you directly to that secured
+data. But first it will need your password so it can decrypt that data for display.</p>
+<div class="figure align-center">
+<img alt="A screenshot of the password confirmation dialog." src="../pages/1.3-migration-guide/password-confirmation-dialog.png" />
+<p class="caption">Confirm your password dialog.</p>
+</div>
+<p>Having entered the correct password you will see the secured data.</p>
+<div class="figure align-center">
+<img alt="A screenshot of the secured account data dialog." src="../pages/1.3-migration-guide/secured-account-data-dialog.png" />
+<p class="caption">The secured data dialog.</p>
+</div>
+<p>Congratulations, now write down the seed words somewhere safe. I recommend you look into
+<a class="reference external" href="https://coinstorage.guru/">SAFEWORDS</a> to help you with this. You can dismiss the notification by clicking on the “X” in
+it’s top right corner.</p>
+</div>
+</div>
+<div class="section" id="accessing-your-master-public-key">
+<h2>Accessing your master public key</h2>
+<p>Master public keys are often used to create watch-only versions of a wallet, or to provide
+to a service or application which needs to be enabled to generate keys on your behalf.</p>
+<p><strong>Warning:</strong> It should be noted that giving your master public key (otherwise known as an “xpub”)
+to a service to it can solicit payments on your behalf is problematic. There is no way for
+anyone paying to know if the service has been compromised or not, and whether the payment
+scripts it provides are actually ones generated from your master public key. A similar concern
+is the reliability of every employee of the service that has access to compromise your payments.
+As a person wanting to pay who uses that service, you also have no guarantee you are paying to
+who you think you are paying.</p>
+<div class="section" id="viewing-the-master-public-key-for-a-given-account">
+<h3>Viewing the master public key for a given account</h3>
+<p>Open a context menu on the entry of the account you want the view the master public key for.
+On Windows this is done with the right mouse button, while the mouse is over the entry.
+On other platforms, it is likely a different button.</p>
+<div class="figure align-center">
+<img alt="A screenshot of the account menu in the wallet window." src="../pages/1.3-migration-guide/wallet-window-account-menu.png" />
+<p class="caption">The context menu for the “Standard account” account entry.</p>
+</div>
+<p>Select the “Information” sub-menu.</p>
+<div class="figure align-center">
+<img alt="A screenshot of the account information dialog." src="../pages/1.3-migration-guide/wallet-window-account-information-dialog.png" />
+<p class="caption">A terse summary of what qualifies as account information.</p>
+</div>
+<p>You can now access your master public key here, and copy it for pasting elsewhere, or show it as
+a QR code for importing into something else.</p>
+</div>
+</div>
+<div class="section" id="accessing-your-master-private-key-secured-data">
+<h2>Accessing your master private key/secured data</h2>
+<p>It is critical that you back up your wallet. At this time the best way to do this is to write
+down your seed and addition important details somewhere safe. This is how you access that data,
+which is secured in the wallet until you need it.</p>
+<div class="section" id="viewing-the-secured-data-for-a-given-account">
+<h3>Viewing the secured data for a given account</h3>
+<p>Open a context menu on the entry of the account you want the view the master public key for.
+On Windows this is done with the right mouse button, while the mouse is over the entry. On
+other platforms, it is likely a different button.</p>
+<div class="figure align-center">
+<img alt="A screenshot of the account menu in the wallet window." src="../pages/1.3-migration-guide/wallet-window-account-menu.png" />
+<p class="caption">The context menu for the “Standard account” account entry.</p>
+</div>
+<p>Select the “View Secured Data” sub-menu. If it is disabled, you are either using a hardware
+wallet, a watch-only wallet or a multi-signature wallet. You will be prompted for your wallet
+password.</p>
+<div class="figure align-center">
+<img alt="A screenshot of the password confirmation dialog." src="../pages/1.3-migration-guide/password-confirmation-dialog.png" />
+<p class="caption">Confirm your password dialog.</p>
+</div>
+<p>Having entered the correct password you will see the secured data.</p>
+<div class="figure align-center">
+<img alt="A screenshot of the secured account data dialog." src="../pages/1.3-migration-guide/secured-account-data-dialog.png" />
+<p class="caption">The secured data dialog.</p>
+</div>
+<p>Congratulations, now write down the seed words somewhere safe. I recommend you look into
+<a class="reference external" href="https://coinstorage.guru/">SAFEWORDS</a> to help you with this. You can dismiss the notification by clicking on the “X” in
+it’s top right corner.</p>
+</div>
+</div>
+
+
+            <p>
+            Last updated: 2020/09/08 04:00 pm
+            </p>
+      </div>
+    </div>
+        </div>
+    </main>
+
+	<footer class="footer site-footer bg-dark py-2 mt-auto">
+      <div class="container">
+		<p class="text-center text-white-50 mt-4 mb-2">
+			This web site is copyright 2018-2024 <a href="https://github.com/rt121212121">Roger Taylor</a>
+		</p>
+      </div>
+    </footer>
+
+    <script src="../theme/js/jquery-3.3.1.min.js"></script>
+    <script src="../theme/js/bootstrap.min.js"></script>
+    <script src="../theme/js/local.js"></script>
+  </body>
+</html>

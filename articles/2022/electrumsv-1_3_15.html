@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+      <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content="The ElectrumSV Wallet for Bitcoin SV"/>
+    <meta name="author" content="The ElectrumSV Developers"/>
+    <meta property="og:site_name" content="ElectrumSV"/>
+    <meta property="og:title" content="What changed in ElectrumSV 1.3.15?"/>
+    <meta property="og:description" content="This update includes essential changes and it is expected that you update to it."/>
+    <meta property="og:image" content="https://electrumsv.io/articles/electrumsv-1.3.15/20220617-example-history-list.png"/>
+	<meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@ElectrumSV"/>
+    <meta name="twitter:title" content="What changed in ElectrumSV 1.3.15?"/>
+    <meta name="twitter:description" content="This update includes essential changes and it is expected that you update to it."/>
+    <meta name="twitter:image" content="https://electrumsv.io/articles/electrumsv-1.3.15/20220617-example-history-list.png"/>
+    <title>ElectrumSV Website - What changed in ElectrumSV 1.3.15?</title>
+    <link rel="stylesheet" href="../../theme/css/fontawesome-v5.6.3.min.css">
+    <link rel="stylesheet" href="../../theme/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../theme/css/local.css?8">
+    <link rel="icon" href="../../theme/img/favicon.ico">
+
+	<!-- Clarity tracking code for http://electrumsv.io/ -->
+	<script>
+		(function(c,l,a,r,i,t,y){
+			c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+			t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+			y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+		})(window, document, "clarity", "script", "6ivfzjahk2");
+	</script>
+  </head>
+  <body class="d-flex flex-column h-100">
+	<main role="main" class="flex-shrink-0 mb-3">
+		<div class="bg-dark">
+			<div class="container">
+				<nav class="navbar navbar-dark navbar-expand-lg">
+					<a class="navbar-brand" href="../../index.html"><img alt="The ElectrumSV logo" class="d-md-block" src="../../theme/img/ESV_logo_wh_RGB_full.svg" onerror="this.onerror=null; this.src='../../theme/img/title_lg.png'" height="40px" title="ElectrumSV"/></a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav ml-auto">
+							<li class='nav-item '>
+								<a class="nav-link esv-btn-navbar mr-2" href="../../index.html">About</a>
+							</li>
+							<li class='nav-item'>
+								<a class="nav-link esv-btn-navbar mr-2" href="https://github.com/electrumsv/electrumsv/releases">Releases</a>
+							</li>
+							<li class='nav-item'>
+								<a class="nav-link esv-btn-navbar mr-2" href="https://electrumsv.readthedocs.io/" target="_blank">Documentation</a>
+							</li>
+							<li class='nav-item'>
+								<a class="nav-link esv-btn-navbar mr-2" href="https://github.com/electrumsv/electrumsv/issues/new/choose" target="_blank">Support</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="https://github.com/electrumsv"><i class="fab fa-github-square" title="Github"></i><span class="d-lg-none"> Github</span></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="https://twitter.com/electrumsv"><i class="fab fa-twitter-square" title="Twitter"></i><span class="d-lg-none"> Twitter</span></a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+        </div>
+
+        <div class="container content-container pt-2">
+<div class="row justify-content-center esv-article">
+  <div class="col-lg-8 mt-3">
+    <section id="content" class="body">
+      <header>
+        <h2 class="entry-title">
+          <a href="../../articles/2022/electrumsv-1_3_15.html" rel="bookmark"
+            title="Permalink to What changed in ElectrumSV 1.3.15?">What changed in ElectrumSV 1.3.15?</a></h2>
+        
+        <div class="post-time">
+          <time class="published" datetime="2022-06-17T16:00:00+12:00">
+            2022/06/17 04:00 pm
+          </time>
+        </div>
+        <address class="vcard author">
+          By               <a class="url fn" href="../../author/the-electrumsv-developers.html">The ElectrumSV Developers</a>
+          </address>
+      </header>
+      <div class="entry-content pt-3">
+        <p>This article covers the release of ElectrumSV 1.3.15, and some of the more important changes that
+have been made since ElectrumSV 1.3.14.</p>
+<div class="section" id="warning">
+<h2>Warning</h2>
+<p><strong>This release, ElectrumSV 1.3.15, is the only version we support. If you use older versions and
+encounter bugs and security problems, you do so at your own risk. You are advised to upgrade
+ElectrumSV to 1.3.15.</strong></p>
+<p><a class="reference external" href="#what-has-changed-in-this-release">Click here</a> to skip to the things that have changed.</p>
+</div>
+<div class="section" id="useful-information">
+<h2>Useful information</h2>
+<div class="section" id="do-you-need-an-introduction-to-how-electrumsv-works">
+<h3>Do you need an introduction to how ElectrumSV works?</h3>
+<p>We have a selected range of guides to common tasks that our users may want to do in our
+documentation, please <a class="reference external" href="https://electrumsv.readthedocs.io/">check it out</a>.</p>
+</div>
+<div class="section" id="where-can-you-download-electrumsv">
+<h3>Where can you download ElectrumSV?</h3>
+<p>The only safe downloads are available from: <a class="reference external" href="https://electrumsv.io/">electrumsv.io</a></p>
+</div>
+<div class="section" id="where-can-you-get-help">
+<h3>Where can you get help?</h3>
+<p>Find our <a class="reference external" href="https://github.com/electrumsv/electrumsv/issues">issue tracker here</a> where you can
+create a ticket. Fill out the issue template, please! Otherwise we have no idea what steps you
+took or any of the other details and then we have to spend time asking you them anyway and you
+get help much later. <strong>Fill out the template for your own sake, if not ours!</strong></p>
+<p>We do not provide support over Twitter or any other forms of social media. Not only is it not
+guaranteed we will see your comments, it is a very painful way to do support that we avoid. If
+you need support, submit an issue on our issue tracker. Or you can raise subjects of interest on
+the <a class="reference external" href="https://discord.gg/bsv">official BSV Discord</a> or the
+<a class="reference external" href="http://metanet.icu/">Metanet.ICU Slack</a>.</p>
+</div>
+</div>
+<div class="section" id="what-has-changed-in-this-release">
+<h2>What has changed in this release?</h2>
+<p>The main changes in this release have been listed below. If you don’t want to know the details,
+just read the titles. If you want to find out about smaller fixes, you can check the
+<a class="reference external" href="https://github.com/electrumsv/electrumsv/blob/master/RELEASE-NOTES">release notes</a> in the
+Github repository.</p>
+<div class="section" id="exploit-fix">
+<h3>Exploit fix</h3>
+<p>The invoice payment support in ElectrumSV was inherited from
+<a class="reference external" href="https://electrum.org/">Electrum Core</a> and provided the ability to read invoice files from disk.
+Unfortunately there are security issues with this, where someone on the same local network could
+access your computer if it was abused. On other operating systems it could be used to lock up a
+user's wallet. You can read more about this in the Electrum Core
+<a class="reference external" href="https://github.com/spesmilo/electrum/security/advisories/GHSA-4fh4-hx35-r355">security announcement</a>.</p>
+<p>The initial fix was made in 1.3.14, but this release is being made to add further polish and provide
+a final release in the 1.3 line in preparation for the upcoming 1.4 lite client release in the
+upcoming months. Due to the interest in doing a release before the exploit was announced, the
+previous release did not explain this exploit as the reason why it was being made.</p>
+<div class="figure align-center">
+<img alt="The send tab where invoice payments are made." src="../../articles/electrumsv-1.3.15/20220617-send-tab.png" style="width: 90%;" />
+<p class="caption">The send tab where invoice payments are made.</p>
+</div>
+</div>
+<div class="section" id="wallet-update-prompt">
+<h3>Wallet update prompt</h3>
+<p>Previously we highlighted the update button in the toolbar in the wallet user interface as either
+yellow (new update) or red (recent update) if you were using an older version of ElectrumSV. Now
+we add a notification to the notifications list, in order to prompt users to update.</p>
+<p>The ElectrumSV developers have limited resources and it is drain on our development time to hear
+problems with older versions of ElectrumSV, especially as we will not fix them. Additionally we
+want to be sure that if there are further exploits, we have a much more visible way of prompting
+the user to update. This change should be that more visible way without hassling the user.</p>
+<div class="figure align-center">
+<img alt="The new &quot;update your wallet&quot; prompt." src="../../articles/electrumsv-1.3.15/20220617-update-electrumsv.png" style="width: 90%;" />
+<p class="caption">The new &quot;update your wallet&quot; prompt.</p>
+</div>
+</div>
+<div class="section" id="add-account-prompt">
+<h3>Add account prompt</h3>
+<p>New wallet users are sometimes not clear on how to create an account. We now add a notification
+that is displayed when a new wallet is created, to prompt the user to look at the toolbar and
+press the &quot;Add account&quot; button. Once the user has created an account this notification goes
+away.</p>
+<div class="figure align-center">
+<img alt="The new &quot;add an wallet&quot; prompt." src="../../articles/electrumsv-1.3.15/20220617-create-an-account.png" style="width: 90%;" />
+<p class="caption">The new &quot;add an wallet&quot; prompt.</p>
+</div>
+</div>
+</div>
+<div class="section" id="what-changed-before-this-release">
+<h2>What changed before this release?</h2>
+<p>Each of our release articles links to the article for the release before it. You can follow our
+releases back and see what changed in each, by the article that accompanied that release.</p>
+<p>Read about what changed in <a class="reference external" href="https://electrumsv.io/articles/2022/electrumsv-1_3_14.html">ElectrumSV 1.3.14</a></p>
+</div>
+
+      </div><!-- /.entry-content -->
+      <footer class="post-info pt-3">
+        <div class="category">
+            Category: <a href="../../category/releases.html">releases</a>
+        </div>
+      </footer><!-- /.post-info -->
+    </section>
+  </div>
+</div>
+        </div>
+    </main>
+
+	<footer class="footer site-footer bg-dark py-2 mt-auto">
+      <div class="container">
+		<p class="text-center text-white-50 mt-4 mb-2">
+			This web site is copyright 2018-2024 <a href="https://github.com/rt121212121">Roger Taylor</a>
+		</p>
+      </div>
+    </footer>
+
+    <script src="../../theme/js/jquery-3.3.1.min.js"></script>
+    <script src="../../theme/js/bootstrap.min.js"></script>
+    <script src="../../theme/js/local.js"></script>
+  </body>
+</html>

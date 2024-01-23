@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+      <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content="The ElectrumSV Wallet for Bitcoin SV"/>
+    <meta name="author" content="The ElectrumSV Developers"/>
+    <meta property="og:site_name" content="ElectrumSV"/>
+    <meta property="og:title" content="How do coins get stolen?"/>
+    <meta property="og:description" content="This is an analysis of how people have had their coins stolen on BSV, BCH or BTC. And a formalisation of how ElectrumSV will deal with reports."/>
+    <meta property="og:image" content="https://electrumsv.io/"/>
+	<meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@ElectrumSV"/>
+    <meta name="twitter:title" content="How do coins get stolen?"/>
+    <meta name="twitter:description" content="This is an analysis of how people have had their coins stolen on BSV, BCH or BTC. And a formalisation of how ElectrumSV will deal with reports."/>
+    <meta name="twitter:image" content="https://electrumsv.io/"/>
+    <title>ElectrumSV Website - How do coins get stolen?</title>
+    <link rel="stylesheet" href="../../theme/css/fontawesome-v5.6.3.min.css">
+    <link rel="stylesheet" href="../../theme/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../theme/css/local.css?8">
+    <link rel="icon" href="../../theme/img/favicon.ico">
+
+	<!-- Clarity tracking code for http://electrumsv.io/ -->
+	<script>
+		(function(c,l,a,r,i,t,y){
+			c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+			t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+			y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+		})(window, document, "clarity", "script", "6ivfzjahk2");
+	</script>
+  </head>
+  <body class="d-flex flex-column h-100">
+	<main role="main" class="flex-shrink-0 mb-3">
+		<div class="bg-dark">
+			<div class="container">
+				<nav class="navbar navbar-dark navbar-expand-lg">
+					<a class="navbar-brand" href="../../index.html"><img alt="The ElectrumSV logo" class="d-md-block" src="../../theme/img/ESV_logo_wh_RGB_full.svg" onerror="this.onerror=null; this.src='../../theme/img/title_lg.png'" height="40px" title="ElectrumSV"/></a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav ml-auto">
+							<li class='nav-item '>
+								<a class="nav-link esv-btn-navbar mr-2" href="../../index.html">About</a>
+							</li>
+							<li class='nav-item'>
+								<a class="nav-link esv-btn-navbar mr-2" href="https://github.com/electrumsv/electrumsv/releases">Releases</a>
+							</li>
+							<li class='nav-item'>
+								<a class="nav-link esv-btn-navbar mr-2" href="https://electrumsv.readthedocs.io/" target="_blank">Documentation</a>
+							</li>
+							<li class='nav-item'>
+								<a class="nav-link esv-btn-navbar mr-2" href="https://github.com/electrumsv/electrumsv/issues/new/choose" target="_blank">Support</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="https://github.com/electrumsv"><i class="fab fa-github-square" title="Github"></i><span class="d-lg-none"> Github</span></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="https://twitter.com/electrumsv"><i class="fab fa-twitter-square" title="Twitter"></i><span class="d-lg-none"> Twitter</span></a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+        </div>
+
+        <div class="container content-container pt-2">
+<div class="row justify-content-center esv-article">
+  <div class="col-lg-8 mt-3">
+    <section id="content" class="body">
+      <header>
+        <h2 class="entry-title">
+          <a href="../../articles/2020/how-do-coins-get-stolen.html" rel="bookmark"
+            title="Permalink to How do coins get stolen?">How do coins get stolen?</a></h2>
+        
+        <div class="post-time">
+          <time class="published" datetime="2020-10-05T16:00:00+13:00">
+            2020/10/05 04:00 pm
+          </time>
+        </div>
+        <address class="vcard author">
+          By               <a class="url fn" href="../../author/roger-taylor.html">Roger Taylor</a>
+          </address>
+      </header>
+      <div class="entry-content pt-3">
+        <p>Occasionally ElectrumSV users have reported that their coins were stolen out of their wallet.
+This is something we never want to happen, but it does, and that it has to even just one person
+is more often than it should have happened. In order to help people understand what they might
+have done to put themselves in a situation where their coins could be stolen, we're going to read
+and summarise all the past cases.</p>
+<p>We'll start with our own wallet for Bitcoin SV, then we'll look at the equivalent wallet for
+Bitcoin Cash and lastly we'll look at the original wallet from Bitcoin Core. After that, we'll
+sum up the conclusions we came to after researching the existing identifiable cases. Hopefully
+this will result in a path forward of some sort.</p>
+<div class="section" id="summarising-reports">
+<h2>Summarising reports</h2>
+<p>The approach used to find reports for each wallet is to look at the issue tracker for the given
+Bitcoin. There are likely many more cases reported through social media, or other forms of
+communication, but finding those is prohibitive in terms of the required effort.</p>
+<p>Hacking is most likely installation of malware on the user's computer, but might also possibly
+be that someone obtained access to their wallet or seed words.</p>
+<div class="section" id="electrumsv">
+<h3>ElectrumSV</h3>
+<p>There are only two instances of people having their coins stolen on our issue tracker that I can
+find, I've supplemented this with additional remembered instances.</p>
+<ul class="simple">
+<li>Coins moved on their own. User established that it was hacking not fake ElectrumSV. 1</li>
+<li>Coins moved on their own. Cause unknown. <a class="reference external" href="https://github.com/electrumsv/electrumsv/issues/200">1</a> <a class="reference external" href="https://github.com/electrumsv/electrumsv/issues/528">2</a></li>
+<li>Coins moved on their own. User downloaded fake ElectrumSV software from a fake site using a bad
+link. 1 2</li>
+</ul>
+</div>
+<div class="section" id="electron-cash">
+<h3>Electron Cash</h3>
+<p>Like Electrum Core, Electron Cash suffered from a problem where bad actors could start malicious
+servers and send authentic looking upgrade messages to any connected user with a fake update
+link to fake software that had been altered to steal coins. The first release of ElectrumSV was
+made after this problem was discovered, so we lucklily avoided this problem. It is very likely that
+there were many more cases of fake software stealing coins than are listed here.</p>
+<ul class="simple">
+<li>Coins moved on their own. User established it was hacking not fake ElectrumSV. <a class="reference external" href="https://github.com/Electron-Cash/Electron-Cash/issues/1433">1</a></li>
+<li>Coins moved on their own. Cause unknown. <a class="reference external" href="https://github.com/Electron-Cash/Electron-Cash/issues/1141">1</a> <a class="reference external" href="https://github.com/Electron-Cash/Electron-Cash/issues/1687">2</a> <a class="reference external" href="https://github.com/Electron-Cash/Electron-Cash/issues/73">3</a></li>
+<li>Coins moved on their own. User downloaded fake Electron Cash software from a fake site using a
+bad link. <a class="reference external" href="https://github.com/Electron-Cash/Electron-Cash/issues/280">1</a> <a class="reference external" href="https://github.com/Electron-Cash/Electron-Cash/issues/966">2</a> <a class="reference external" href="https://github.com/Electron-Cash/Electron-Cash/issues/1288">3</a> <a class="reference external" href="https://github.com/Electron-Cash/Electron-Cash/issues/997">4</a></li>
+</ul>
+<p>I went through the titles of all Electron Cash issues, and checked any that looked like they were
+related to coin theft. In addition I searched for &quot;malware&quot;, &quot;theft&quot;, &quot;stole&quot; and a few other
+keywords.</p>
+</div>
+<div class="section" id="electrum-core">
+<h3>Electrum Core</h3>
+<p>Like Electron Cash, Electrum Core suffered from a problem where bad actors could start malicious
+servers and send authentic looking upgrade messages to any connected user with a fake update
+link to fake software that had been altered to steal coins. The first release of ElectrumSV was
+made after this problem was discovered, so we lucklily avoided this problem. It is very likely that
+there were many more cases of fake software stealing coins than are listed here.</p>
+<ul class="simple">
+<li>Coins moved on their own. User established it was hacking not fake ElectrumSV. <a class="reference external" href="https://github.com/spesmilo/electrum/issues/5225">1</a> <a class="reference external" href="https://github.com/spesmilo/electrum/issues/2740">2</a>
+<a class="reference external" href="https://github.com/spesmilo/electrum/issues/834">3</a></li>
+<li>Coins moved on their own. Cause unknown. <a class="reference external" href="https://github.com/spesmilo/electrum/issues/3976">1</a> <a class="reference external" href="https://github.com/spesmilo/electrum/issues/2699">2</a> <a class="reference external" href="https://github.com/spesmilo/electrum/issues/2131">3</a> <a class="reference external" href="https://github.com/spesmilo/electrum/issues/2705">4</a> <a class="reference external" href="https://github.com/spesmilo/electrum/issues/3034">5</a></li>
+<li>Coins moved on their own. User downloaded fake Electrum Core software from a fake site using a
+bad link. At the time of writing there are <a class="reference external" href="https://github.com/spesmilo/electrum/issues?q=label%3Aphishing+is%3Aclosed">69 known occurrences</a>.</li>
+<li>Coins were stolen because of some weird Electrum bug. <a class="reference external" href="https://github.com/spesmilo/electrum/issues/613">1</a></li>
+<li>Additional coins were stolen because of fake recovery services. <a class="reference external" href="https://github.com/spesmilo/electrum/issues/3238">1</a></li>
+<li>Coins were stolen by clipboard malware that changes addresses. <a class="reference external" href="https://github.com/spesmilo/electrum/issues/6091">1</a></li>
+</ul>
+<p>Electrum Core has a thousand or so issues, so the issues located above were those that were
+results in a search for &quot;malware&quot;, &quot;theft&quot;, &quot;stole&quot; and a few other keywords.</p>
+</div>
+</div>
+<div class="section" id="analysis">
+<h2>Analysis</h2>
+<p>It is hard to say how common these problems are solely from the Github issues, as it is not
+possible to link how often they appear there to how often they were reported through other
+avenues. But if I had to guess, I would say they were not that common. If someone has their
+coins stolen, they are going to complain loudly and they are more than likely going to be told
+to report an issue. I would also expect that it has happened a lot more for Electrum Core and
+Electron Cash due to their phishing problems with the fake upgrade alerts.</p>
+<div class="section" id="public-record">
+<h3>Public record</h3>
+<p>It is in ElectrumSV's interest to solely respond to users about these sorts of problems in our
+Github issues. And it is also in our interest to push the user to investigate as comprehensively
+as possible. Knowing how they were hacked, allows us to better act to protect our other users,
+and having a record of both the reports and the results of any investigations is invaluable
+to learning from this. While it is also possible that community members may chime in and help
+with any investigation, it is considered unlikely they will.</p>
+</div>
+<div class="section" id="pre-existing-altcoin-usage">
+<h3>Pre-existing altcoin usage</h3>
+<p>One thing it has not occurred to me to ask, is if the user is also using Electrum Core
+or Electron Cash. All a thief has to do is extract any seed words, and then look for usage of those
+seed words on other blockchains. They can and would likely automate the process. We should add
+asking this to a checklist to be asked of any users in this situation. I couldn't find any
+instances where this was verified to occur, but I am pretty sure I have read about it happening
+in the past.</p>
+</div>
+<div class="section" id="lying-or-laziness">
+<h3>Lying or laziness</h3>
+<p>In a few of the cases, users claimed to be using software that they couldn't have been using
+given the developers analysis of the other information. It was likely that the user just went to
+the project's web site and copied the latest link, and said &quot;Here, this is what I am using.&quot;
+rather than intentionally being deceitful.</p>
+</div>
+<div class="section" id="why-aid-us-if-coins-are-not-recoverable">
+<h3>Why aid us if coins are not recoverable</h3>
+<p>We cannot provide the user who has had their coins stolen with a way to easily get them back.
+So the question might be asked, why would they spend any time helping us investigate how they
+were stolen?</p>
+<p>If the user intends on reporting the theft to some authority, then any information we can help
+them find, may be of assistance. However, I have yet to see any instances where someone has
+reported theft of coins to the authorities, and had any resolution to their satisfaction. This
+does not mean that no-one has. I expect most users will give up and shake their fist in
+frustration that Bitcoin transactions are not reversible. Others will be aware that their
+hard drive contains personal data they do not want to give out, or that they have material
+obtained from P2P networks that might make them liable for crimes of various natures, whether
+copyright or other.</p>
+<p>The user might also be mistaken. Several Electrum Core reports were from people that did not
+understand their wallet or much about how it worked, and often were just misreading things.
+However, this is likely to be hinted at in any initial screenshots that the user provides in
+their initial report. It might be worth improving the checklist to filter this out for sure.</p>
+<p>It's even prohibitively hard to safely aid us in investigating the cause, if the assumption
+is that it is best for them to stop using the computer because it might be hacked.</p>
+</div>
+<div class="section" id="shared-frustration">
+<h3>Shared frustration</h3>
+<p>It is not enjoyable to hear that users have had their coins stolen and the worst possible scenario
+would be that somehow an official build was compromised, and all users are now exposed to the
+possibility of having their coins stolen. This does not just relate to coin theft, no maintainer
+wants to release software with severe bugs in it either. Maintaining a wallet is enough work
+without dealing with this sort of havoc. I can see the same pained resignation in responses to
+reports like these by developers of other wallets that I feel when I have to deal with a similar
+report for ElectrumSV.</p>
+<p>So it is reassuring to see developers on other wallets using the same reasoning I have found myself
+using. That if this were a buggy release or a compromised build, there would be a lot more reports
+of the problem and a lot more angry users. That there is one user reporting this, and that
+they lost a small amount of coins, is more indicative that the problem is not with ElectrumSV but
+either that they were hacked or downloaded a fake version of the wallet instead.</p>
+</div>
+</div>
+<div class="section" id="summing-up">
+<h2>Summing up</h2>
+<p>The biggest discovery was that there were a much fewer reports of this than I expected. Electron
+Cash had eight reports. ElectrumSV had five reports. And the older and more widely used Electrum
+Core had eleven that were discoverable, ignoring those that were because of the malicious server
+fake update alert debacle and other rarer problems.</p>
+<div class="section" id="investigation-checklist">
+<h3>Investigation checklist</h3>
+<p>It should be possible to continually refine a checklist of information needed from users, based
+on past reports. There is no point in presenting users with a list of multiple questions at the
+start of the process, they will not answer the questions reliably. Some users may not believe they
+need to provide any details, and will assert their beliefs and dismiss any questions. Other users
+may not have the technical skill to know how to answer them. It would be much more productive to
+step them through the questions one by one.</p>
+<ol class="arabic simple">
+<li>Inform the user that they may have been hacked and that they should shut down the computer the
+wallet was on, and use another computer to continue the discussion.</li>
+<li>Ask the user what operating system they are using because they won't have filled out the
+new issue template.</li>
+<li>Ask the user to find the wallet file in their operating systems file explorer and take a
+screenshot of it.</li>
+<li>If the file details do not match any known release, inform the user they downloaded a fake
+wallet and it is no surprise their coins were stolen. The investigation is complete.</li>
+<li>Ask the user to provide the SHA256 checksum of the file. At this point their operating
+system should be known, and it should be able to provide them with instructions suited to
+that operating system.</li>
+<li>If the SHA256 checksum does not match the checksum of the official release, then inform the user
+they downloaded a fake wallet and it is no surprise their coins were stolen. The investigation
+is complete.</li>
+<li>Ask the user if they are using Electrum Core or Electron Cash, and if so, whether they used the
+same seed words in ElectrumSV.</li>
+<li>If they used the same seed words in Electrum Core or Electron Cash, then inform them this may
+be the cause of their coins being stolen. They are however at this point in a quandary, if
+they open and check their coins in that other wallet and they have not been stolen then this
+might expose those wallets to theft as well. If they are using another computer, they can
+download known correct versions of the other wallet software and restore their coins, and see
+the state of their wallets.</li>
+<li>At this point, they have proven by the SHA256 checksum that they have a legitimate version of
+ElectrumSV. They have claimed that they do not use the other wallets on the same computer,
+which indicates that that is not a potential cause. And that they do not use the same seed
+words in those other wallets if they use them elsewhere.</li>
+<li>Are there widespread reports that match this for many many users of ElectrumSV? Given that
+there are tens of thousands of downloads of each release, if the official builds are
+compromised there will be widespread complaints and a mob of angry users. If so, then the
+investigation is complete. This would have been obvious before beginning working through
+the list, of course.</li>
+</ol>
+<p>For investigation of stolen coins where the user makes it past the end of the list, the most
+likely option is that they were hacked. They should do something like preserving their hard
+drive for evidence, and reporting it to the police.</p>
+<p>For users who refuse to aid in the investigation, there is not much we can do to help them. We
+should state something along the lines that we are happy to help them investigate further when
+they are willing to assist us, and close the issue until then. Similarly if they reveal they
+have since reformatted their hard drive, then there is not much we can do.</p>
+</div>
+</div>
+
+      </div><!-- /.entry-content -->
+      <footer class="post-info pt-3">
+        <div class="category">
+            Category: <a href="../../category/research.html">research</a>
+        </div>
+      </footer><!-- /.post-info -->
+    </section>
+  </div>
+</div>
+        </div>
+    </main>
+
+	<footer class="footer site-footer bg-dark py-2 mt-auto">
+      <div class="container">
+		<p class="text-center text-white-50 mt-4 mb-2">
+			This web site is copyright 2018-2024 <a href="https://github.com/rt121212121">Roger Taylor</a>
+		</p>
+      </div>
+    </footer>
+
+    <script src="../../theme/js/jquery-3.3.1.min.js"></script>
+    <script src="../../theme/js/bootstrap.min.js"></script>
+    <script src="../../theme/js/local.js"></script>
+  </body>
+</html>

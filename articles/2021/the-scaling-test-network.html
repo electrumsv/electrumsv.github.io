@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+      <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content="The ElectrumSV Wallet for Bitcoin SV"/>
+    <meta name="author" content="The ElectrumSV Developers"/>
+    <meta property="og:site_name" content="ElectrumSV"/>
+    <meta property="og:title" content="The Scaling Test Network"/>
+    <meta property="og:description" content="The best place to test your applications under load is on the scaling test network. This guide shows you how ElectrumSV can be used with it."/>
+    <meta property="og:image" content="https://electrumsv.io/"/>
+	<meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@ElectrumSV"/>
+    <meta name="twitter:title" content="The Scaling Test Network"/>
+    <meta name="twitter:description" content="The best place to test your applications under load is on the scaling test network. This guide shows you how ElectrumSV can be used with it."/>
+    <meta name="twitter:image" content="https://electrumsv.io/"/>
+    <title>ElectrumSV Website - The Scaling Test Network</title>
+    <link rel="stylesheet" href="../../theme/css/fontawesome-v5.6.3.min.css">
+    <link rel="stylesheet" href="../../theme/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../theme/css/local.css?8">
+    <link rel="icon" href="../../theme/img/favicon.ico">
+
+	<!-- Clarity tracking code for http://electrumsv.io/ -->
+	<script>
+		(function(c,l,a,r,i,t,y){
+			c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+			t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+			y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+		})(window, document, "clarity", "script", "6ivfzjahk2");
+	</script>
+  </head>
+  <body class="d-flex flex-column h-100">
+	<main role="main" class="flex-shrink-0 mb-3">
+		<div class="bg-dark">
+			<div class="container">
+				<nav class="navbar navbar-dark navbar-expand-lg">
+					<a class="navbar-brand" href="../../index.html"><img alt="The ElectrumSV logo" class="d-md-block" src="../../theme/img/ESV_logo_wh_RGB_full.svg" onerror="this.onerror=null; this.src='../../theme/img/title_lg.png'" height="40px" title="ElectrumSV"/></a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav ml-auto">
+							<li class='nav-item '>
+								<a class="nav-link esv-btn-navbar mr-2" href="../../index.html">About</a>
+							</li>
+							<li class='nav-item'>
+								<a class="nav-link esv-btn-navbar mr-2" href="https://github.com/electrumsv/electrumsv/releases">Releases</a>
+							</li>
+							<li class='nav-item'>
+								<a class="nav-link esv-btn-navbar mr-2" href="https://electrumsv.readthedocs.io/" target="_blank">Documentation</a>
+							</li>
+							<li class='nav-item'>
+								<a class="nav-link esv-btn-navbar mr-2" href="https://github.com/electrumsv/electrumsv/issues/new/choose" target="_blank">Support</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="https://github.com/electrumsv"><i class="fab fa-github-square" title="Github"></i><span class="d-lg-none"> Github</span></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="https://twitter.com/electrumsv"><i class="fab fa-twitter-square" title="Twitter"></i><span class="d-lg-none"> Twitter</span></a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+        </div>
+
+        <div class="container content-container pt-2">
+<div class="row justify-content-center esv-article">
+  <div class="col-lg-8 mt-3">
+    <section id="content" class="body">
+      <header>
+        <h2 class="entry-title">
+          <a href="../../articles/2021/the-scaling-test-network.html" rel="bookmark"
+            title="Permalink to The Scaling Test Network">The Scaling Test Network</a></h2>
+        
+        <div class="post-time">
+          <time class="published" datetime="2021-04-30T16:00:00+12:00">
+            2021/04/30 04:00 pm
+          </time>
+        </div>
+        <address class="vcard author">
+          By               <a class="url fn" href="../../author/electrumsv-developers.html">ElectrumSV Developers</a>
+          </address>
+      </header>
+      <div class="entry-content pt-3">
+        <p>As a developer, the best way to do Bitcoin development is to use the test networks that exist for
+that purpose. It follows from this, that if there is a test network that has simulated high load
+at various levels over time, that this provides a invaluable location to test under more realistic
+conditions. And there is such a network, the <a class="reference external" href="https://bitcoinscaling.io">scaling test network</a> (otherwise known as the STN).</p>
+<div class="figure align-center">
+<img alt="The Scaling Test Network web site." src="../../articles/scaling-testnet/2021-04-30-stn-feature.png" style="width: 90%;" />
+<p class="caption">Featured content from the scaling test network web site.</p>
+</div>
+<p>It is possible to run ElectrumSV against any of the test networks. And being able to select when
+you run it, which it runs against, provides a flexible way to use ElectrumSV with any network when
+the need arises. The primary use that anyone might make of ElectrumSV is to manage coins.</p>
+<div class="section" id="connecting-electrumsv-to-the-stn">
+<h2>Connecting ElectrumSV to the STN</h2>
+<p>When you run ElectrumSV, it will run against the main network by default. This is where the
+official Bitcoin SV coins exist. In order to run ElectrumSV against the STN, a user needs to
+provide it with a command-line argument.</p>
+<div class="section" id="running-in-scaling-testnet-mode">
+<h3>Running in Scaling Testnet mode</h3>
+<p>There are many ways that you could run ElectrumSV on both your platform and your environment, and
+the examples below can be used as a starting point. The key thing shown is that
+as long as you are able to work out how to run from your command-line, you need to use
+the <tt class="docutils literal"><span class="pre">--scaling-testnet</span></tt> argument when you do so.</p>
+<p>If you are running a Windows build you might use the following command:</p>
+<pre class="code console literal-block">
+<span class="go">ElectrumSV-1.3.17-portable.exe --scaling-testnet</span>
+</pre>
+<p>If you are running on macOS or Linux, you might use the following command:</p>
+<pre class="code console literal-block">
+<span class="go">electrum-sv --scaling-testnet</span>
+</pre>
+<p>And if you are running from source code on Windows, you might use the following command:</p>
+<pre class="code console literal-block">
+<span class="go">py -3 electrum-sv --scaling-testnet</span>
+</pre>
+<div class="section" id="configuring-the-server">
+<h4>Configuring the server</h4>
+<p>At this time, due to technical difficulties the ElectrumSV hosted scaling testnet server is
+offline. However, you can connect to a server offered by the <a class="reference external" href="https://satoshi.io">satoshi.io</a>
+service. You will need to configure your ElectrumSV instance to know about this server.</p>
+<p>First identify the location of your data directory:</p>
+<ul class="simple">
+<li>If you are running in portable mode, which you won't be unless you know you are, it will be in
+your current directory.</li>
+<li>If you are running on Windows, it will be in <tt class="docutils literal"><span class="pre">c:\users\&lt;username&gt;\AppData\Roaming\ElectrumSV</span></tt>.</li>
+<li>If you are running on MacOS or Linux, it will be in <tt class="docutils literal"><span class="pre">~/.electrum-sv/</span></tt>.</li>
+</ul>
+<p>Within your data directory, there should be a <tt class="docutils literal"><span class="pre">scaling-testnet</span></tt> sub-directory. Within this, there
+is a <tt class="docutils literal">config</tt> file. This is in the JSON format, and you will need to make sure you maintain the
+format as you would when you edit any JSON file.</p>
+<div class="figure align-center">
+<img alt="The config file location on Windows." src="../../articles/scaling-testnet/windows10-explorer-config-location.png" style="width: 90%;" />
+<p class="caption">The config file location on Windows.</p>
+</div>
+<p>You should find entries for the currently offline default server <tt class="docutils literal"><span class="pre">stn-server.electrumsv.io</span></tt>.
+Replace <tt class="docutils literal"><span class="pre">stn-server.electrumsv.io</span></tt> with <tt class="docutils literal">electrumx.stn.sv</tt>.</p>
+<div class="section" id="potential-problem-the-data-directory-is-missing">
+<h5>Potential problem - The data directory is missing</h5>
+<p>If you have not found a data directory, it is possible that you have not run ElectrumSV yet. If
+you do run ElectrumSV and even if it cannot find servers, it will create the data directory as one
+of the first things it does. Do that, and then shut down ElectrumSV.</p>
+</div>
+<div class="section" id="potential-problem-the-scaling-testnet-sub-directory-is-missing">
+<h5>Potential problem - The scaling-testnet sub-directory is missing</h5>
+<p>The <tt class="docutils literal"><span class="pre">scaling-testnet</span></tt> sub-directory will only be created if you have run in STN mode using
+the <tt class="docutils literal"><span class="pre">--scaling-testnet</span></tt> command-line argument as shown above.</p>
+</div>
+</div>
+<div class="section" id="blockchain-synchronisation">
+<h4>Blockchain synchronisation</h4>
+<p>When you run ElectrumSV it will connect to the server and proceed to obtain all the blockchain
+headers for the scaling testnet network. Until it has done obtained all the headers it will
+appear as &quot;Not Connected&quot;, but you can confirm that it is in STN mode by looking at the title
+bar and seeing &quot;scalingtestnet&quot; and not &quot;testnet or &quot;mainnet&quot;.</p>
+<div class="figure align-center">
+<img alt="The headers are being synchronised for the STN." src="../../articles/scaling-testnet/electrumsv-1.3.12-not-connected.png" style="width: 90%;" />
+<p class="caption">The headers are being synchronised for the STN.</p>
+</div>
+<p>ElectrumSV will switch to a &quot;Connected&quot; state once it has all the headers for the current STN
+blockchain.</p>
+<div class="figure align-center">
+<img alt="The headers are being synchronised for the STN." src="../../articles/scaling-testnet/electrumsv-1.3.12-connected.png" style="width: 90%;" />
+<p class="caption">The headers are being synchronised for the STN.</p>
+</div>
+</div>
+<div class="section" id="obtaining-stn-coins">
+<h4>Obtaining STN coins</h4>
+<p>For now the best way to obtain coins to test with on the STN is to submit
+<a class="reference external" href="https://github.com/electrumsv/electrumsv/issues/new/choose">a Github issue</a>.
+on the ElectrumSV project, and to request them. Provide an address from your STN account in the
+issue for the coins to be received in.</p>
+<div class="figure align-center">
+<img alt="Give an address to receive coins in." src="../../articles/scaling-testnet/electrumsv-1.3.12-receive-funds.png" style="width: 90%;" />
+<p class="caption">Give an address to receive coins in.</p>
+</div>
+<p>Note that STN addresses are in the same format as testnet addresses, so if you do run in testnet
+mode and may have accidentally done so, check your title bar to confirm which network you are
+connected to.</p>
+</div>
+</div>
+</div>
+
+      </div><!-- /.entry-content -->
+      <footer class="post-info pt-3">
+        <div class="category">
+            Category: <a href="../../category/guides.html">guides</a>
+        </div>
+      </footer><!-- /.post-info -->
+    </section>
+  </div>
+</div>
+        </div>
+    </main>
+
+	<footer class="footer site-footer bg-dark py-2 mt-auto">
+      <div class="container">
+		<p class="text-center text-white-50 mt-4 mb-2">
+			This web site is copyright 2018-2024 <a href="https://github.com/rt121212121">Roger Taylor</a>
+		</p>
+      </div>
+    </footer>
+
+    <script src="../../theme/js/jquery-3.3.1.min.js"></script>
+    <script src="../../theme/js/bootstrap.min.js"></script>
+    <script src="../../theme/js/local.js"></script>
+  </body>
+</html>
